@@ -1230,6 +1230,7 @@
     <a href="#start">Start here</a>
     <a href="#tree">Full tree</a>
     <a href="#main">1 · Main</a>
+    <a href="#n-scan">Quick Scan</a>
     <a href="#bed">2 · Bed Display</a>
     <a href="#menu">3 · Menu</a>
     <a href="#offline">Offline</a>
@@ -1376,6 +1377,57 @@
     <div class="note">
       <p><b>Support tip:</b> "I can't see my patients" is almost always a wrong branch or ward selection, not missing
         data. Ask the nurse to confirm the branch and ward shown at the top of the screen first.</p>
+    </div>
+  </section>
+
+  <section id="n-scan">
+    <div class="section-head">
+      <span class="eyebrow">Home app bar</span>
+      <h2>Quick Scan — QR / barcode</h2>
+    </div>
+    <p>The <b>QR</b> button on the home app bar scans a patient's wristband, file sticker or slip. It reads a
+      <em>UHID</em> or a <em>visit number</em> — the server works out which — and opens a <b>Patient Quick Actions</b>
+      sheet for that bed's patient, without scrolling the ward list to find them.</p>
+    <div class="table-wrap">
+      <table>
+        <thead>
+          <tr>
+            <th>Element</th>
+            <th>What it does</th>
+            <th>Why it matters</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td>QR button</td>
+            <td>Scans the code and resolves it to the patient's current active visit.</td>
+            <td>Opens one patient directly instead of hunting the ward list.</td>
+          </tr>
+          <tr>
+            <td>Patient header</td>
+            <td>Photo, name, age, gender, UHID, visit number and bed.</td>
+            <td>Confirm the right patient before acting.</td>
+          </tr>
+          <tr>
+            <td>Ward actions</td>
+            <td>Facesheet, Medication, Orders List, New Order, Documents, Visit History — plus, when the patient's status
+              allows: Transfer Out, Transfer Bed, Mark / Tentative / Cancel / Approve / Actual Discharge, Send for
+              Billing, Patient Deceased, Doctor Visit Posting.</td>
+            <td>The same actions as the Bed Display card, reached by scan.</td>
+          </tr>
+          <tr>
+            <td>Check-in gating</td>
+            <td>A patient not yet checked in shows only <b>Pending Check In</b>; one awaiting transfer shows only
+              <b>Transfer In</b>.</td>
+            <td>Mirrors the Bed Display rule — clinical actions stay hidden until the patient is in an active bed state.</td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+    <p class="swipe">Swipe the table sideways to read every column &rarr;</p>
+    <div class="note">
+      <p><b>Online-only.</b> The scan resolve is a live lookup, so the QR button is greyed out with a message when the
+        network is out. If a scanned code has no open visit, the sheet says so instead of opening a half-empty list.</p>
     </div>
   </section>
 
