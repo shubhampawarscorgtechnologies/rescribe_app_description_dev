@@ -1229,6 +1229,7 @@
     <a href="#wn-permissions">Aug 2026 · Document permissions</a>
     <a href="#wn-page-slider">Aug 2026 · Page slider</a>
     <a href="#wn-fingerprint">Aug 2026 · Fingerprint capture</a>
+    <a href="#wn-quick-scan">Aug 2026 · Scan a patient QR</a>
     <a href="#wn-fixes">Aug 2026 · Fixes &amp; improvements</a>
   </nav>
 
@@ -1638,6 +1639,88 @@
         data-goto="paper#p-canvas">Paperless Documentation &rarr; Canvas &sect;4.7 Fingerprint capture</a>.</p>
   </section>
 
+  <section id="wn-quick-scan">
+    <div class="section-head">
+      <span class="eyebrow">August 2026 &middot; Doctor app, Nurse app</span>
+      <h2>Scan a patient&rsquo;s QR or barcode to jump straight to their actions</h2>
+    </div>
+
+    <p>The home screen of both the doctor and the nurse app now carries a <b>QR / barcode</b> button. Scan the code on a
+      patient&rsquo;s wristband, file sticker or slip &mdash; it reads a <b>UHID</b> or a <b>visit number</b>, the app
+      works out which &mdash; and a <b>Patient Quick Actions</b> sheet opens with everything you would normally reach by
+      searching for that patient, already in context.</p>
+
+    <div class="note">
+      <p><b>Who this is for:</b> anyone who currently types a UHID into Search to open one patient &mdash; a doctor at
+        the bedside, a nurse on a ward round. It replaces &ldquo;open Search, choose the tab, type the number, pick the
+        row&rdquo; with one scan.</p>
+    </div>
+
+    <h3>What the scan reads</h3>
+    <ul class="plain">
+      <li><b>UHID or visit number &mdash; either works.</b> You do not have to know which is printed on the code; the
+        server resolves the code to the patient&rsquo;s current active visit.</li>
+      <li><b>It needs a connection.</b> The scan resolve is a live lookup, so it is online-only &mdash; offline, the QR
+        button is greyed out and answers with a message rather than opening onto a failing screen.</li>
+      <li><b>No active visit?</b> If the code matches a patient who has no open visit, the sheet says so instead of
+        opening a half-empty action list.</li>
+    </ul>
+
+    <h3>The flow, screen by screen</h3>
+    <ol class="flow">
+      <li>
+        <strong>Tap the QR button on the home app bar</strong>
+        <span>Top-right of the doctor and the nurse home screen, next to the notification bell.</span>
+        <figure class="shot">
+          <img src="assets/whatsnew/quick-scan/qr-1-scan-button.png" alt="The doctor home screen with the QR scan button on the app bar circled" loading="lazy">
+          <figcaption>Tap the QR button on the app bar, next to the message and notification icons.</figcaption>
+        </figure>
+      </li>
+      <li>
+        <strong>Point at the code</strong>
+        <span>Wristband, file sticker or registration slip &mdash; whatever carries the patient&rsquo;s UHID or visit
+          barcode.</span>
+      </li>
+      <li>
+        <strong>The Patient Quick Actions sheet opens</strong>
+        <span>A header identifies the patient &mdash; photo, name, age, gender, UHID, visit / admission number, and the
+          bed or queue when relevant &mdash; so you can confirm it is the right person before doing anything.</span>
+        <figure class="shot">
+          <img src="assets/whatsnew/quick-scan/qr-2-quick-actions.png" alt="The Patient Quick Actions sheet for an admitted patient, showing the patient header and the action list" loading="lazy">
+          <figcaption>The action list is tailored to the patient and the signed-in user &mdash; here, an admitted (IP)
+            patient in the doctor app.</figcaption>
+        </figure>
+      </li>
+      <li>
+        <strong>Pick an action</strong>
+        <span>The list is tailored to who you are and to the patient. A doctor sees the clinical and records actions for
+          that visit; a nurse sees the ward actions for that bed. Tapping one closes the sheet and opens the existing
+          screen for it.</span>
+      </li>
+    </ol>
+
+    <h3>What each role sees</h3>
+    <ul class="plain">
+      <li><b>Doctor.</b> For an outpatient appointment: Patient Info, Facesheet, Investigation and its history, Documents,
+        Consultation History, Visit History and Appointment Details. For an admitted patient (IP / ED / DC): the same
+        plus Vitals, Orders, New Order and the EMR chart.</li>
+      <li><b>Nurse.</b> The bed actions for that patient &mdash; Facesheet, Medication, Orders List, New Order,
+        Documents and Visit History &mdash; plus, where the patient&rsquo;s status allows it, the ward-management
+        actions: Transfer Out, Transfer Bed, Mark / Tentative / Cancel / Approve / Actual Discharge, Send for Billing,
+        Patient Deceased and Doctor Visit Posting. A patient who is not yet checked in shows only <b>Pending Check
+        In</b>; one awaiting transfer-in shows only <b>Transfer In</b>.</li>
+    </ul>
+
+    <div class="note">
+      <p><b>Support tip:</b> the sheet is a shortcut, not a new place data lives &mdash; every action opens the same
+        screen the user reaches by hand, so anything that works there works here. If the sheet will not open, check the
+        connection first: the scan lookup is online-only.</p>
+    </div>
+
+    <p class="caption">Reference: <a href="doctor.html#d-scan" data-goto="doctor#d-scan">Doctor App &rarr; Quick
+        Scan</a> &middot; <a href="nurse.html#n-scan" data-goto="nurse#n-scan">Nurse App &rarr; Quick Scan</a>.</p>
+  </section>
+
   <section id="wn-fixes">
     <div class="section-head">
       <span class="eyebrow">August 2026 &middot; Since the 30 July build</span>
@@ -1669,7 +1752,21 @@
       <li>If the location cannot be read, the last known location is used instead of leaving the field empty.</li>
       <li>Signing out no longer discards the tablet&rsquo;s device registration, and the sign-out confirmation now warns
         when documents are still waiting to sync.</li>
-      <li>Clearer wording on the offline messages, and consistent behaviour on actions that need a connection.</li>
+      <li>Actions that only work with a connection now grey out consistently and answer with the same clear message
+        instead of firing a request that can only fail. On the nurse home screen that covers the QR scan, notifications
+        and the branch switch; on the Bed Display screen it covers every ward action &mdash; Pen Mode is the one thing
+        that stays usable offline, because it reads cached documents and queues its own saves.</li>
+    </ul>
+
+    <h3>Nurse app</h3>
+    <ul class="plain">
+      <li>The Bed Display screen now supports <b>pull-to-refresh</b>, and reloads itself automatically when the network
+        comes back after a failed load &mdash; without discarding beds already on screen.</li>
+      <li>The nursing-station picker now opens directly under its own card instead of drifting to the middle of the
+        screen; the branch picker is unchanged.</li>
+      <li>The home-screen loading skeleton matches the real dashboard more closely &mdash; taller bed-count card and a
+        softer border, so the screen does not jump when data arrives.</li>
+      <li><b>New Order</b> from a bed now opens the order-add screen with the bed already in context, one step shorter.</li>
     </ul>
 
     <h3>Screens and controls</h3>
