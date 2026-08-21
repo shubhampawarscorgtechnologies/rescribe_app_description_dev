@@ -1230,6 +1230,7 @@
     <a href="#d-start">Start here</a>
     <a href="#d-tree">Full tree</a>
     <a href="#d-main">1 · Main</a>
+    <a href="#d-scan">Quick Scan</a>
     <a href="#d-today">2 · Today's Appointment</a>
     <a href="#d-appt">3 · Appointment List</a>
     <a href="#d-search">4 · Search</a>
@@ -1589,6 +1590,51 @@
     <h3>1.6 Pen Mode</h3>
     <p>Paperless documentation for the admitted patient — writing on documents by hand instead of on paper. The feature
       is identical on the nurse side and is documented separately in the <b>Paperless Documentation</b> map.</p>
+  </section>
+
+  <section id="d-scan">
+    <div class="section-head">
+      <span class="eyebrow">Home app bar</span>
+      <h2>Quick Scan — QR / barcode</h2>
+    </div>
+    <p>The <b>QR</b> button on the Main screen app bar opens the camera to scan a patient's wristband, file sticker or
+      slip. It reads a <em>UHID</em> or a <em>visit number</em> — the server works out which — and opens a
+      <b>Patient Quick Actions</b> sheet for that patient, without going through Search.</p>
+    <div class="table-wrap">
+      <table>
+        <thead>
+          <tr>
+            <th>Element</th>
+            <th>What it does</th>
+            <th>Why it matters</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td>QR button</td>
+            <td>Scans the code and resolves it to the patient's current active visit.</td>
+            <td>One scan replaces typing a UHID into Search and picking the row.</td>
+          </tr>
+          <tr>
+            <td>Patient header</td>
+            <td>Photo, name, age, gender, UHID, visit / admission number, bed or queue.</td>
+            <td>Confirm the right patient before acting.</td>
+          </tr>
+          <tr>
+            <td>Action list</td>
+            <td>OP appointment: Patient Info, Facesheet, Investigation and history, Documents, Consultation History,
+              Visit History, Appointment Details. Admitted (IP / ED / DC): the same plus Vitals, Orders, New Order and
+              the EMR chart.</td>
+            <td>Every action opens the same screen as the manual route — a shortcut, not a new place data lives.</td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+    <p class="swipe">Swipe the table sideways to read every column &rarr;</p>
+    <div class="note">
+      <p><b>Online-only.</b> The scan resolve is a live lookup, so the QR button is greyed out with a message when the
+        network is out. If a scanned code has no open visit, the sheet says so instead of opening a half-empty list.</p>
+    </div>
   </section>
 
   <section id="d-today">
